@@ -199,6 +199,107 @@
 
     
     
+      
+      
+        
+        
+        
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/05/ftp传输模式/" itemprop="url">
+                  ftp传输模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-05T16:00:11+08:00" content="2016-04-05">
+              2016-04-05
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这几天在调试设备上的程序，因为需要把Linux上制作的固件上传到Windows主机上，然后通过设备上的程序下载Windows上的固件来升级。问题来了，设备上的程序总是提示校验失败，经过一番排查，发现是linux下的ftp工具造成的。</p>
+<h1 id="FTP_u4F20_u8F93_u6A21_u5F0F"><a href="#FTP_u4F20_u8F93_u6A21_u5F0F" class="headerlink" title="FTP传输模式"></a>FTP传输模式</h1><p>Linux上的FTP命令工具下有Ascii和Binary两种模式，默认是Ascii模式。这两种模式在不同的系统之间传输文件的时候，会造成很大哦不同. 我们看下man的说明:</p>
+<ul>
+<li>ascii       Set the file transfer type to network ASCII.  This is the default type.</li>
+<li>binary      Set the file transfer type to support binary image transfer.</li>
+</ul>
+<p>使用FileZilla等工具，可以选择自动模式，工具软件会根据需要来决定传输模式</p>
+<h2 id="Ascii"><a href="#Ascii" class="headerlink" title="Ascii"></a>Ascii</h2><p>ASCII模式将回车换行转换为本机的回车字符，比如：UNIX下是\n,Windows下是\r\n，Mac下是\r。<br>ASCII模式下会转换文件，不能说是不同系统对回车换行解释不同，而是不同的系统有不同的行结束符。UNIX系统下行结束符是一个字节，即十六进制的0A，而Windows的系统是两个字节，即十六进制的0D0A，所以当你用ASCII方式从UNIX的FTP Server下载文件到Windows系统上时(不管是二进制或者文本文件)，每检测到一个字节是0A，就会自动插入一个0D，所以如果你的文件是二进制文件，比如可执行文件、压缩包什么的，就肯定不能用了。如果你的文件就是UNIX下的文本文件，你用ASCII模式是正确的，要是误用了Binary模式，你在Windows上看这个文件是没有换行的，里面是一个个的黑方块</p>
+<h2 id="Binary"><a href="#Binary" class="headerlink" title="Binary"></a>Binary</h2><p>Binary模式下，ftp工具不对传输内容做任何改动，所以当你传输非文本二进制的时候，最好使用该模式</p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -816,7 +917,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
