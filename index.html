@@ -222,6 +222,167 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/19/MiniGUI3-0移植到Hisi3521A/" itemprop="url">
+                  MiniGUI3.0移植到Hisi3521A
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-19T20:08:08+08:00" content="2016-07-19">
+              2016-07-19
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1、编译zlib [这个必须优先于libpng库编译]</p>
+<ul>
+<li>解压: tar -xvf zlib-1.2.2.tar.gz</li>
+<li>进入解压目录: cd zlib-1.2.2</li>
+<li>编辑Makefile:<ul>
+<li>修改19行: CC=arm-hisiv300-linux-gcc</li>
+<li>修改36行: AR=arm-hisiv300-linux-gcc rc</li>
+<li>修改37行: RANLIB=arm-hisiv300-linux-ranlib</li>
+</ul>
+</li>
+<li>编译：make</li>
+<li>拷贝:<ul>
+<li>cp zlib.h zconf.h ../../MiniGUI/include/</li>
+<li>cp libz.a ../../MiniGUI/lib/</li>
+</ul>
+</li>
+</ul>
+<p>2、编译libpng</p>
+<ul>
+<li>解压：tar -xvf libpng-1.2.37.tar.gz</li>
+<li>配置： LDFLAGS=”-L../../MiniGUI/lib/“ CPPFLAGS=”-I../../MiniGUI/include” ./configure –host=arm-hisiv300-linux</li>
+<li>编译：make</li>
+<li>拷贝：<ul>
+<li>cp png.h pngconf.h ../../MiniGUI/include</li>
+<li>cp -a .libs/libpng.so* ../../MiniGUI/lib/</li>
+</ul>
+</li>
+</ul>
+<p>3、编译jpeg:</p>
+<ul>
+<li>解压：tar -xvf jpegsrc.v7.tar.gz</li>
+<li>配置：./configure –host=arm-hisiv300-linux</li>
+<li>编译：make</li>
+<li>拷贝:<ul>
+<li>cp jconfig.h jerror.h jmorecfg.h jpeglib.h ../../MiniGUI/include/</li>
+<li>cp -a .libs/libjpeg.so* ../../MiniGUI/lib/</li>
+</ul>
+</li>
+</ul>
+<p>4、安装minigui资源文件:</p>
+<ul>
+<li>解压：tar -xvf minigui-res-be-3.0.12.tar.gz</li>
+<li>拷贝：cp bmp cursor font icon ../../MiniGUI/res/ -fr</li>
+</ul>
+<p>5、编译libminigui-gpl:</p>
+<ul>
+<li>解压：tar -xvf libminigui-gpl-3.0.12.tar.gz</li>
+<li>打补丁：patch src/newgal/fbcon/fbvideo.c fbvideo.p</li>
+<li>配置：CFLAGS=”-I/home/zhenghao/Work/Projects/Tes/Source/Device/OSD/MiniGUI/include” LDFLAGS=”-L ../../MiniGUI/lib” ./configure –host=arm-hisiv300-linux –disable-screensaver –disable-splash   –enable-videoqvfb=no –enable-rtosxvfb=no –enable-pcxvfb=no</li>
+<li>编译：make</li>
+<li>拷贝：<ul>
+<li>先安装到一个临时目录：make install DESTDIR=/tmp/xx</li>
+<li>拷贝<ul>
+<li>cp -a /tmp/xx/usr/local/lib/libminigui_ths* ../../MiniGUI/lib/</li>
+<li>cp -fr /tmp/xx/usr/local/include/minigui ../../MiniGUI/include/</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>6、编译sample:</p>
+<ul>
+<li>解压:</li>
+<li>配置：CPPFLAGS=”-I/home/zhenghao/Work/Projects/Tes/Source/Device/OSD/MiniGUI/include” CFLAGS=”-I/home/zhenghao/Work/Projects/Tes/Source/Device/OSD/MiniGUI/include” LDFLAGS=”-L/home/zhenghao/Work/Projects/Tes/Source/Device/OSD/MiniGUI/lib” MINIGUI_CFLAGS=”-I/home/zhenghao/Work/Projects/Tes/Source/Device/OSD/MiniGUI/include” MINIGUI_LIBS=”-lminigui_ths -lpng -lm -ljpeg -lpthread” ./configure –host=arm-hisiv300-linux</li>
+<li>编译：make</li>
+</ul>
+<p>7、运行程序前的相关配置</p>
+<ul>
+<li>环境变量导入:<ul>
+<li>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../../lib<br>export MG_RES_PATH=../../res<br>export MG_CFG_PATH=../../</li>
+</ul>
+</li>
+<li>MINIGUI.cfg<ul>
+<li>gal_engine=fbcon</li>
+<li>[fbcon]defaultmode=1280x720-16bpp</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/14/我们能更职业一点么/" itemprop="url">
                   我们能更职业一点么
                 </a>
@@ -1044,7 +1205,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

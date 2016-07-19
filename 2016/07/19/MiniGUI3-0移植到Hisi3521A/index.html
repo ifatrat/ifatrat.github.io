@@ -57,19 +57,37 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="1、编译zlib [这个必须优先于libpng库编译]
+
+解压: tar -xvf zlib-1.2.2.tar.gz
+进入解压目录: cd zlib-1.2.2
+编辑Makefile:
+修改19行: CC=arm-hisiv300-linux-gcc
+修改36行: AR=arm-hisiv300-linux-gcc rc
+修改37行: RANLIB=arm-hisiv300-linux-ranl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2016/01/29/hello-world/index.html">
+<meta property="og:title" content="MiniGUI3.0移植到Hisi3521A">
+<meta property="og:url" content="http://yoursite.com/2016/07/19/MiniGUI3-0移植到Hisi3521A/index.html">
 <meta property="og:site_name" content="iFatRat's Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-01-29T07:50:35.000Z">
+<meta property="og:description" content="1、编译zlib [这个必须优先于libpng库编译]
+
+解压: tar -xvf zlib-1.2.2.tar.gz
+进入解压目录: cd zlib-1.2.2
+编辑Makefile:
+修改19行: CC=arm-hisiv300-linux-gcc
+修改36行: AR=arm-hisiv300-linux-gcc rc
+修改37行: RANLIB=arm-hisiv300-linux-ranl">
+<meta property="og:updated_time" content="2016-07-19T12:08:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="MiniGUI3.0移植到Hisi3521A">
+<meta name="twitter:description" content="1、编译zlib [这个必须优先于libpng库编译]
+
+解压: tar -xvf zlib-1.2.2.tar.gz
+进入解压目录: cd zlib-1.2.2
+编辑Makefile:
+修改19行: CC=arm-hisiv300-linux-gcc
+修改36行: AR=arm-hisiv300-linux-gcc rc
+修改37行: RANLIB=arm-hisiv300-linux-ranl">
 
 
 
@@ -87,7 +105,7 @@ Quick">
   };
 </script>
 
-  <title> Hello World | iFatRat's Blog </title>
+  <title> MiniGUI3.0移植到Hisi3521A | iFatRat's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -217,7 +235,7 @@ Quick">
             
             
               
-                Hello World
+                MiniGUI3.0移植到Hisi3521A
               
             
           </h1>
@@ -229,8 +247,8 @@ Quick">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-29T15:50:35+08:00" content="2016-01-29">
-              2016-01-29
+            <time itemprop="dateCreated" datetime="2016-07-19T20:08:08+08:00" content="2016-07-19">
+              2016-07-19
             </time>
           </span>
 
@@ -255,15 +273,84 @@ Quick">
       
 
       
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>1、编译zlib [这个必须优先于libpng库编译]</p>
+<ul>
+<li>解压: tar -xvf zlib-1.2.2.tar.gz</li>
+<li>进入解压目录: cd zlib-1.2.2</li>
+<li>编辑Makefile:<ul>
+<li>修改19行: CC=arm-hisiv300-linux-gcc</li>
+<li>修改36行: AR=arm-hisiv300-linux-gcc rc</li>
+<li>修改37行: RANLIB=arm-hisiv300-linux-ranlib</li>
+</ul>
+</li>
+<li>编译：make</li>
+<li>拷贝:<ul>
+<li>cp zlib.h zconf.h ../../MiniGUI/include/</li>
+<li>cp libz.a ../../MiniGUI/lib/</li>
+</ul>
+</li>
+</ul>
+<p>2、编译libpng</p>
+<ul>
+<li>解压：tar -xvf libpng-1.2.37.tar.gz</li>
+<li>配置： LDFLAGS=”-L../../MiniGUI/lib/“ CPPFLAGS=”-I../../MiniGUI/include” ./configure –host=arm-hisiv300-linux</li>
+<li>编译：make</li>
+<li>拷贝：<ul>
+<li>cp png.h pngconf.h ../../MiniGUI/include</li>
+<li>cp -a .libs/libpng.so* ../../MiniGUI/lib/</li>
+</ul>
+</li>
+</ul>
+<p>3、编译jpeg:</p>
+<ul>
+<li>解压：tar -xvf jpegsrc.v7.tar.gz</li>
+<li>配置：./configure –host=arm-hisiv300-linux</li>
+<li>编译：make</li>
+<li>拷贝:<ul>
+<li>cp jconfig.h jerror.h jmorecfg.h jpeglib.h ../../MiniGUI/include/</li>
+<li>cp -a .libs/libjpeg.so* ../../MiniGUI/lib/</li>
+</ul>
+</li>
+</ul>
+<p>4、安装minigui资源文件:</p>
+<ul>
+<li>解压：tar -xvf minigui-res-be-3.0.12.tar.gz</li>
+<li>拷贝：cp bmp cursor font icon ../../MiniGUI/res/ -fr</li>
+</ul>
+<p>5、编译libminigui-gpl:</p>
+<ul>
+<li>解压：tar -xvf libminigui-gpl-3.0.12.tar.gz</li>
+<li>打补丁：patch src/newgal/fbcon/fbvideo.c fbvideo.p</li>
+<li>配置：CFLAGS=”-I/home/zhenghao/Work/Projects/Tes/Source/Device/OSD/MiniGUI/include” LDFLAGS=”-L ../../MiniGUI/lib” ./configure –host=arm-hisiv300-linux –disable-screensaver –disable-splash   –enable-videoqvfb=no –enable-rtosxvfb=no –enable-pcxvfb=no</li>
+<li>编译：make</li>
+<li>拷贝：<ul>
+<li>先安装到一个临时目录：make install DESTDIR=/tmp/xx</li>
+<li>拷贝<ul>
+<li>cp -a /tmp/xx/usr/local/lib/libminigui_ths* ../../MiniGUI/lib/</li>
+<li>cp -fr /tmp/xx/usr/local/include/minigui ../../MiniGUI/include/</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>6、编译sample:</p>
+<ul>
+<li>解压:</li>
+<li>配置：CPPFLAGS=”-I/home/zhenghao/Work/Projects/Tes/Source/Device/OSD/MiniGUI/include” CFLAGS=”-I/home/zhenghao/Work/Projects/Tes/Source/Device/OSD/MiniGUI/include” LDFLAGS=”-L/home/zhenghao/Work/Projects/Tes/Source/Device/OSD/MiniGUI/lib” MINIGUI_CFLAGS=”-I/home/zhenghao/Work/Projects/Tes/Source/Device/OSD/MiniGUI/include” MINIGUI_LIBS=”-lminigui_ths -lpng -lm -ljpeg -lpthread” ./configure –host=arm-hisiv300-linux</li>
+<li>编译：make</li>
+</ul>
+<p>7、运行程序前的相关配置</p>
+<ul>
+<li>环境变量导入:<ul>
+<li>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../../lib<br>export MG_RES_PATH=../../res<br>export MG_CFG_PATH=../../</li>
+</ul>
+</li>
+<li>MINIGUI.cfg<ul>
+<li>gal_engine=fbcon</li>
+<li>[fbcon]defaultmode=1280x720-16bpp</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -275,13 +362,13 @@ Quick">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/05/14/我们能更职业一点么/" rel="next" title="我们能更职业一点么">
+                <i class="fa fa-chevron-left"></i> 我们能更职业一点么
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/02/01/年度总结-2015/" rel="prev" title="年度总结-2015">
-                年度总结-2015 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -392,7 +479,7 @@ Quick">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick_Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create_a_new_post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run_server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate_static_files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy_to_remote_sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
